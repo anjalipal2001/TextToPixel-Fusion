@@ -28,7 +28,7 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        console.log("++++++++++++++++++========")
+        // console.log("++++++++++++++++++========")
         const response = await fetch('http://localhost:8080/api/v1/dalle', {
           method: 'POST',
           headers: {
@@ -38,9 +38,9 @@ const CreatePost = () => {
             prompt: form.prompt,
           }),
         });
-        console.log("+++++++++",response)
+        // console.log("+++++++++",response)
         const data = await response.json();
-        console.log("+++++++++",data)
+        // console.log("+++++++++",data)
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (err) {
         alert(err);
@@ -56,6 +56,7 @@ const CreatePost = () => {
     e.preventDefault();
 
     if (form.prompt && form.photo) {
+      // console.log("_______=====+++++",form.photo)
       setLoading(true);
       try {
         const response = await fetch('http://localhost:8080/api/v1/post', {
@@ -65,8 +66,8 @@ const CreatePost = () => {
           },
           body: JSON.stringify({ ...form }),
         });
-console.log("http://localhost:8080/api/v1/post",response)
-        await response.json();
+// console.log("http://localhost:8080/api/v1/post",response.json())
+         await response.json();
         alert('Success');
         navigate('/');
       } catch (err) {
