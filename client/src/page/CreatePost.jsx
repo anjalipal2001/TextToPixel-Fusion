@@ -29,7 +29,7 @@ const CreatePost = () => {
       try {
         setGeneratingImg(true);
         // console.log("++++++++++++++++++========")
-        const response = await fetch('http://localhost:8080/api/v1/dalle', {
+        const response = await fetch('https://text-to-pixel.onrender.com/api/v1/dalle', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const CreatePost = () => {
             prompt: form.prompt,
           }),
         });
-        // console.log("+++++++++",response)
+        
         const data = await response.json();
         // console.log("+++++++++",data)
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
@@ -56,17 +56,16 @@ const CreatePost = () => {
     e.preventDefault();
 
     if (form.prompt && form.photo) {
-      // console.log("_______=====+++++",form.photo)
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:8080/api/v1/post', {
+        const response = await fetch('https://text-to-pixel.onrender.com/api/v1/post', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ ...form }),
         });
-// console.log("http://localhost:8080/api/v1/post",response.json())
+
          await response.json();
         alert('Success');
         navigate('/');

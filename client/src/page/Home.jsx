@@ -26,7 +26,7 @@ import { Card, FormField, Loader } from '../components';
       setLoading(true);
 
       try {
-        const response = await fetch('http://localhost:8080/api/v1/post', {
+        const response = await fetch('https://text-to-pixel.onrender.com/api/v1/post', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -79,6 +79,8 @@ import { Card, FormField, Loader } from '../components';
           />
         </div>
 
+        
+        
         <div className="mt-10">
           {loading ? (
             <div className="flex justify-center items-center">
